@@ -1,0 +1,31 @@
+import numpy as np
+import os
+from param_parser.param_parser import parameter_parser
+#from . import param_parser
+from joblib import load
+
+def Predict(X,clf):
+    '''
+    param: X (feature vector)
+    return: y (label), 0 for benign, 1 for malware
+    '''
+    path=os.path.dirname(os.path.abspath(__file__))
+    
+    model = load(path+'/model_save/'+clf+'.joblib')
+    #imodel = load(path+'/model_save/mlp.joblib')
+
+    label = model.predict(X)
+    return label
+
+
+def main(args):
+    
+    feature = np.load(args.model)
+    result = Predict(feature,"mlp" )
+    print(result)
+
+
+
+if __name__=='__main__':
+    args = parameter_parser()
+    main(args)

@@ -1,0 +1,4 @@
+networkx==2.8.5
+r2pipe==1.7.1
+numpy==1.23.1
+scikit-learn==0.24.0
